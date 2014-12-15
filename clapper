@@ -1,0 +1,28 @@
+int soundPin = 0;       
+int ledPin =  4;      
+int clapCount = 0; 
+void setup() {
+  pinMode(ledPin, OUTPUT); //setting the LED to an output
+}
+
+void loop(){
+  int soundState = analogRead(soundPin); //reading the mic  
+  if (clapCount > 4){ //resets the clap count to 0 after 4 claps
+    clapCount = 1;
+  }
+  if (soundState > 500) { //the sound limit to add a count to the clap count
+    clapCount++;
+    delay(500);
+  }
+  if (clapCount==2){  // if the controler counts 2 claps turn LED on
+    digitalWrite(ledPin, HIGH);
+  }
+  if (clapCount==4){  // if the controler counts 2 more claps turn LED off
+    digitalWrite(ledPin, LOW);
+  }
+}
+
+
+
+
+
